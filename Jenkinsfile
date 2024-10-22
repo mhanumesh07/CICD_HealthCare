@@ -46,7 +46,7 @@ pipeline {
     stage('Docker Push-Image') {
       steps {
         echo 'This stage will push my new image to the dockerhub'
-        sh 'docker push nani85/healthcare:1.0 .'
+        sh 'docker push nani85/healthcare:1.0'
             }
       }
     
