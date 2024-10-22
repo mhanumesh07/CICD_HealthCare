@@ -29,6 +29,20 @@ pipeline {
         sh 'docker build -t nani85/healthcare'
                           }
             }
+    stage('Login to Dockerhub') {
+      steps {
+        echo 'This stage will loginto Dockerhub' 
+        withCredentials([usernamePassword(credentialsId: 'Dockerlogin', passwordVariable: 'docker-pass', usernameVariable: 'docker-login')]) {
+        sh 'docker login -u ${Dockerlogin} -p ${docker-pass}'
+}
+            }
+         }
+    stage('Docker Push-Image') {
+      steps {
+        echo 'This stage will push my new image to the dockerhub'
+        sh 'docker push nani85/healthcare'
+            }
+      }
     
   }
 }
